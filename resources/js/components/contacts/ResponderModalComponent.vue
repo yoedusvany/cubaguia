@@ -50,7 +50,7 @@
             sendMail: function () {
 
                 if(this.subject !== '' && this.message !== ''){
-                    fetch('/sendMail/'+this.email+'/'+this.subject+'/'+this.message)
+                        fetch('/sendMail/'+this.email+'/'+this.subject+'/'+this.message)
                         .then(response => response.json())
                         .then(res => {
                             console.log(res);

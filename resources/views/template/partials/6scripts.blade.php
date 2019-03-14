@@ -3,7 +3,7 @@
 <!-- <div id="preloader"></div> -->
 
 <!-- JavaScript Libraries -->
-<script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>-->
+<script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('lib/jquery/jquery-migrate.min.js') }}"></script>
 <script src="{{ asset('lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('lib/easing/easing.min.js')}}"></script>

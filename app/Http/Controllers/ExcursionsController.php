@@ -51,10 +51,15 @@ class ExcursionsController extends Controller
     {
         $excursiones_lugares = ExcursionLugar::where('excursion_id',$excursionId)->get();
         $places = array();
+        $imagenes = array();
 
         foreach ($excursiones_lugares as $excursion_lugar){
             $place = $excursion_lugar->lugar;
-            $place->imagen = asset('images')."/".$place->imgs->first()->nombre;
+
+            foreach ($place->imgs as $image){
+                $imagenes[] = asset('images')."/".$image->nombre;
+            }
+            $place->imagenes = $imagenes;
             $places[] = $place;
         }
 

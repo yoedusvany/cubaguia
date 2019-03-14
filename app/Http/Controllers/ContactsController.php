@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Contacts;
+use App\Mail\ContactResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Psy\Util\Json;
 
 class ContactsController extends Controller
@@ -40,7 +42,10 @@ class ContactsController extends Controller
      */
     public function sendMail($email, $subject, $message)
     {
-        return "true";
+        Mail::to($email)
+            ->send(new ContactResponse($subject, $message));
+
+        return;
     }
 
     /**
