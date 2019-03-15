@@ -17,7 +17,7 @@
                     <div class="contact-address">
                         <i class="ion-ios-location-outline"></i>
                         <h3>Address</h3>
-                        <address>A108 Adam Street, NY 535022, USA</address>
+                        <address>{{ contactDataAddress }}</address>
                     </div>
                 </div>
 
@@ -25,7 +25,7 @@
                     <div class="contact-phone">
                         <i class="ion-ios-telephone-outline"></i>
                         <h3>Phone Number</h3>
-                        <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
+                        <p><a href="tel:+155895548855">{{ contactDataPhone  }} </a></p>
                     </div>
                 </div>
 
@@ -33,7 +33,7 @@
                     <div class="contact-email">
                         <i class="ion-ios-email-outline"></i>
                         <h3>Email</h3>
-                        <p><a href="mailto:info@example.com">info@example.com</a></p>
+                        <p><a href="mailto:info@example.com">{{ contactDataMail }}</a></p>
                     </div>
                 </div>
 
@@ -81,7 +81,11 @@
                 subject : '',
                 message : '',
                 result  : false,
-                textResult : 'Su información de contacto ha sido registrada correctamente. En breve nos pondremos en contacto con usted.'
+                textResult : 'Su información de contacto ha sido registrada correctamente. En breve nos pondremos en contacto con usted.',
+
+                contactDataMail: '',
+                contactDataPhone: '',
+                contactDataAddress: '',
             }
         },
         methods:{
@@ -114,6 +118,20 @@
             }
         },
         mounted() {
+
+            axios.get('getContactData')
+                .then(response => {
+                    this.contactDataAddress = response.data.address;
+                    this.contactDataPhone = response.data.phone;
+                    this.contactDataMail = response.data.email;
+                })
+                .catch(error => {
+                    this.$swal.fire({
+                        type: 'error',
+                        title: 'Error',
+                        text: 'Ocurrio un error!',
+                    });
+                });
         }
     }
 </script>

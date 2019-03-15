@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\ContactData;
 use App\Contacts;
 use App\Mail\ContactResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use PhpParser\Node\Expr\Cast\Object_;
 use Psy\Util\Json;
 
 class ContactsController extends Controller
@@ -90,5 +92,47 @@ class ContactsController extends Controller
     public function destroy(Contacts $contacts)
     {
         //
+    }
+
+    /**
+     * Save contact data.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function updateContactData(Request $request)
+    {
+        $address = $request->get('address');
+        $phone = $request->get('phone');
+        $email = $request->get('email');
+
+        $data = ContactData::all();
+
+        if($data->isEmpty()){
+            $dataNew = new ContactData();
+            $dataNew->address = $address;
+            $dataNew->phone = $phone;
+            $dataNew->email = $email;
+            $dataNew->save();
+
+        }else{
+            $data = $data->first();
+            $data->address = $address;
+            $data->phone = $phone;
+            $data->email = $email;
+            $data->save();
+        }
+
+    }
+
+
+    /**
+     * Get contact data.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getContactData()
+    {
+        $data = ContactData::get();
+        return response()->json($data->first());
     }
 }

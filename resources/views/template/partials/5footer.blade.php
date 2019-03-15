@@ -6,12 +6,12 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-lg-3 col-md-6 footer-info">
+                <div class="col-lg-4 col-md-6 footer-info">
                     <h3>CubaGuia</h3>
                     <p>¿Estás buscando la mejor Guía de Cuba para tu viaje a esta maravillosa isla? Entonces has llegado al lugar indicado porque he preparado una súper Guía de Cuba con los mejores consejos para viajar a Cuba y hacerlo como local. </p>
                 </div>
 
-                <div class="col-lg-3 col-md-6 footer-links">
+                <div class="col-lg-4 col-md-6 footer-links">
                     <h4>Useful Links</h4>
                     <ul>
                         <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
@@ -20,15 +20,8 @@
                     </ul>
                 </div>
 
-                <div class="col-lg-3 col-md-6 footer-contact">
-                    <h4>Contact Us</h4>
-                    <p>
-                        A108 Adam Street <br>
-                        New York, NY 535022<br>
-                        United States <br>
-                        <strong>Phone:</strong> +1 5589 55488 55<br>
-                        <strong>Email:</strong> info@example.com<br>
-                    </p>
+                <div class="col-lg-4 col-md-6 footer-contact">
+                    <footer-contact-details></footer-contact-details>
 
                     <div class="social-links">
                         <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
@@ -40,13 +33,6 @@
 
                 </div>
 
-                <div class="col-lg-3 col-md-6 footer-newsletter">
-                    <h4>Our Newsletter</h4>
-                    <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem marada parida nodela caramase seza.</p>
-                    <form action="" method="post">
-                        <input type="email" name="email"><input type="submit"  value="Subscribe">
-                    </form>
-                </div>
 
             </div>
         </div>

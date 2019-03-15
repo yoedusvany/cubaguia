@@ -32,11 +32,17 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/contact-details/{path?}', [
+    'uses' => 'ContactsController@index',
+    'as' => 'contact-details',
+    'where' => ['path' => '.*']
+]);
+
 
 //CONTACTS
 Route::get('sendMail/{email}/{subject}/{message}', 'ContactsController@sendMail');
 Route::post('contact','ContactsController@store');
-
+Route::get('getContactData', 'ContactsController@getContactData');
 
 
 //EXCURSIONES
@@ -50,6 +56,9 @@ Route::get('lugar-list', 'LugarController@list');
 Route::group(['middleware' => 'auth'], function() {
     Route::get('contact-list', 'ContactsController@list');
     Route::Resource('contact','ContactsController', ['except' => 'store']);
+    Route::put('update-contact-data', 'ContactsController@updateContactData');
+
+    Route::get('getContactData1', 'ContactsController@getContactData');
 
     Route::Resource('excursion','ExcursionsController');
 

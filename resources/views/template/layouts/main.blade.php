@@ -15,14 +15,15 @@
 
 @include('template.partials.3intro')
 
-
-@include('template.partials.4main')
-
-
-@yield('content')
+<div id="app">
+    @include('template.partials.4main')
 
 
-@include('template.partials.5footer')
+    @yield('content')
+
+
+    @include('template.partials.5footer')
+</div>
 
 @include('template.partials.6scripts')
 

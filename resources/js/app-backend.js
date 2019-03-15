@@ -25,6 +25,9 @@ const routes = [
         path: '/contact', component: require('./components/contacts/ListContactsComponent').default
     },
     {
+        path: '/contact-details', component: require('./components/contact_data/ContactDataComponent').default
+    },
+    {
         path: '/excursion', component: require('./components/excursiones/backend/ExcursionBackendComponent').default,
         children: [
             {
