@@ -11,6 +11,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
                 <th scope="col" width="40%">Desc.</th>
+                <th scope="col" width="40%">Desc. Ingles</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Fecha</th>
                 <th scope="col">Acciones</th>
@@ -21,6 +22,7 @@
                 <th scope="row">{{ index+1 }}</th>
                 <td>{{ item.nombre }}</td>
                 <td>{{ item.desc }}</td>
+                <td>{{ item.desc_en }}</td>
                 <td class="text-right">${{ item.precio }}</td>
                 <td>{{ item.created_at }}</td>
                 <td>

@@ -17,6 +17,7 @@ Vue.use(VueSweetalert2);
 Vue.component('contact-component', require('./components/contacts/ContactComponent.vue').default);
 Vue.component('excursion-component', require('./components/excursiones/ExcursionComponent.vue').default);
 Vue.component('footer-contact-details', require('./components/footer/FooterContactDataComponent').default);
+Vue.component('footer-contact-social-networks', require('./components/footer/SocialNetworkComponent').default);
 Vue.component('servicios', require('./components/services/ServiciosFrontendComponent').default);
 
 const app = new Vue({

@@ -3,13 +3,14 @@
         <div class="portfolio-wrap">
             <figure>
                 <img :src="excursion.img" style="background-size: auto 100%;" class="img-fluid" alt="">
-                <a href="#" class="link-details" v-on:click="showDetail" data-toggle="modal" data-target="#exampleModalCenter" title="More Details"><i
+                <a href="#" class="link-details" v-on:click="showDetail" data-toggle="modal" data-target="#exampleModalCenter" :title="$t('MoreDetails')"><i
                     class="ion ion-android-open"></i></a>
             </figure>
 
             <div class="portfolio-info">
                 <h4><a href="#">{{ excursion.nombre }}</a></h4>
-                <p>{{ excursion.desc }}</p>
+                <p v-if="idioma === 'es'">{{ excursion.desc }}</p>
+                <p v-else>{{ excursion.desc_en }}</p>
             </div>
         </div>
 
@@ -31,6 +32,7 @@
         data() {
             return {
                 show: false,
+                idioma : window.laravel.idioma
             }
         },
 

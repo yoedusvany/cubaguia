@@ -3,17 +3,18 @@
         <br>
         <h1 class="display-4 text-center">{{ excursion.nombre }}</h1>
         <hr class="my-4">
-        <p class="lead">{{ excursion.desc }}</p>
+        <p class="lead" v-if="idioma === 'es'">{{ excursion.desc }}</p>
+        <p class="lead" v-else>{{ excursion.desc_en }}</p>
 
         <div class="text-center">
-            <h3>Lugares</h3>
+            <h3>{{ $t('Places')}}</h3>
         </div>
         <lugares class="row" v-for="lugar in lugares" :lugar="lugar" :key="lugar.id"></lugares>
 
         <br>
         <div class="text-center">
             <button class="btn btn-primary" v-on:click.prevent="closePanel">
-                <i class="fa fa-close"></i> Close Panel
+                <i class="fa fa-close"></i> {{ $t('ClosePanel')}}
             </button>
         </div>
     </div>
@@ -34,6 +35,7 @@
         data() {
             return {
                 lugares: [],
+                idioma: window.laravel.idioma
             }
         },
 

@@ -16,6 +16,11 @@
         </div>
 
         <div class="form-group">
+            <label for="descTexArea1">Descripci&oacute;n Ingles</label>
+            <textarea v-model="desc_en" v-validate="'required'" name="desc_en" class="form-control" id="descTexArea1" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
             <label for="exampleFormControlFile1">Subir im&aacute;genes</label>
             <input type="file" v-on:change="onImageChange" class="form-control-file" id="exampleFormControlFile1" multiple>
         </div>
@@ -26,7 +31,9 @@
         </ul>
 
         <div class="form-group">
-            <button type="button" class="btn btn-primary" @click="uploadImage">Adicionar</button>
+            <button v-if="!modeEdit" type="button" class="btn btn-primary" @click="uploadImage"><i class="fa fa-plus"></i> Adicionar</button>
+            <button v-else type="button" class="btn btn-primary" @click="uploadImage"><i class="fa fa-save"></i> Actualizar</button>
+
         </div>
 
         <div class="row">
@@ -46,6 +53,7 @@
                 image: [],
                 nombre: '',
                 desc : '',
+                desc_en : '',
                 modeEdit: false
             }
         },
@@ -75,7 +83,8 @@
                     axios.post('/lugar',{
                         image: this.image,
                         nombre: this.nombre,
-                        desc: this.desc
+                        desc: this.desc,
+                        desc_en: this.desc_en
                     }).then(response => {
                         if(response.status == 200){
                             this.$swal.fire('Lugar registrado correctamente');
@@ -92,7 +101,8 @@
                     axios.put('/lugar/'+this.id,{
                         image: this.image,
                         nombre: this.nombre,
-                        desc: this.desc
+                        desc: this.desc,
+                        desc_en: this.desc_en
                     }).then(response => {
                         if(response.status == 200){
                             this.$swal.fire('Lugar editado correctamente');
@@ -165,6 +175,7 @@
                     .then(response => {
                         this.nombre = response.data.nombre;
                         this.desc = response.data.desc;
+                        this.desc_en = response.data.desc_en;
 
                         for(let i = 0; i<response.data.images.length; i++){
                             this.image.push(response.data.images[i]);

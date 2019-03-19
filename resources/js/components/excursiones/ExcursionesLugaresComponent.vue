@@ -5,10 +5,11 @@
                 <div class="col p-4 d-flex flex-column position-static">
                     <!--<strong class="d-inline-block mb-2 text-primary"></strong>-->
                     <h3 class="mb-0">{{ lugar.nombre }}</h3>
-                    <p class="card-text mb-auto">{{ lugar.desc }}</p>
+                    <p class="card-text mb-auto" v-if="idioma === 'es'">{{ lugar.desc }}</p>
+                    <p class="card-text mb-auto" v-else>{{ lugar.desc_en }}</p>
                     <p></p>
                     <div class="text-center">
-                        <button v-on:click="onShowGallery"  class="btn btn-success">Ver Galeria</button>
+                        <button v-on:click="onShowGallery"  class="btn btn-success">{{ $t('ViewGallery')}}</button>
                     </div>
                 </div>
                 <!--<div class="col-auto d-none d-lg-block">
@@ -55,7 +56,8 @@
         data() {
             return {
                 index: 0,
-                verGaleria : false
+                verGaleria : false,
+                idioma : window.laravel.idioma
             }
         },
     }

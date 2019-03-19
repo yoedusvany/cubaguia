@@ -24,6 +24,9 @@ const ExcursionAdd = Vue.component('excursion-add', require('../js/components/ex
 const ServiciosList = Vue.component('servicio-list', require('../js/components/services/ListComponent').default);
 const ServicioAdd = Vue.component('servicio-add', require('../js/components/services/AddComponent').default);
 
+const SNList = Vue.component('sn-list', require('../js/components/social_network/SNListComponent').default);
+const SNAdd = Vue.component('sn-add', require('../js/components/social_network/SNAddComponent').default);
+
 
 const routes = [
     {
@@ -31,6 +34,23 @@ const routes = [
     },
     {
         path: '/contact-details', component: require('./components/contact_data/ContactDataComponent').default
+    },
+    {
+        path: '/social-network', component: require('./components/social_network/SNComponent').default,
+        children: [
+            {
+                path: '',
+                component: SNList },
+            {
+                path: 'add/:id?',
+                name: 'snAdd',
+                component: SNAdd
+            },
+            {
+                path: 'list',
+                component: SNList
+            }
+        ]
     },
     {
         path: '/excursion', component: require('./components/excursiones/backend/ExcursionBackendComponent').default,

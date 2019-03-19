@@ -15,6 +15,11 @@
             <textarea v-model="desc" v-validate="'required'" name="desc" class="form-control" id="descTexArea" rows="3"></textarea>
         </div>
 
+        <div class="form-group">
+            <label for="descTexArea1">Descripci&oacute;n - Ingles</label>
+            <textarea v-model="desc_en" v-validate="'required'" name="desc_en" class="form-control" id="descTexArea1" rows="3"></textarea>
+        </div>
+
 
 
         <div class="row">
@@ -54,6 +59,7 @@
                 icon: '',
                 nombre: '',
                 desc : '',
+                desc_en : '',
                 modeEdit: false
             }
         },
@@ -80,10 +86,11 @@
             },
             uploadImage(){
                 if(!this.modeEdit && this.errors.any() === false){
-                    axios.post('/api/services',{
+                    axios.post('/api/servicios',{
                         image: this.image,
                         nombre: this.nombre,
-                        desc: this.desc
+                        desc: this.desc,
+                        desc_en: this.desc_en
                     }).then(response => {
                         if(response.status == 200){
                             this.$swal.fire('Servicio registrado correctamente');
@@ -97,10 +104,11 @@
                         }
                     });
                 }else if(this.modeEdit && this.errors.any() === false){
-                    axios.put('/api/services/'+this.id,{
+                    axios.put('/api/servicios/'+this.id,{
                         image: this.image,
                         nombre: this.nombre,
-                        desc: this.desc
+                        desc: this.desc,
+                        desc_en: this.desc_en
                     }).then(response => {
                         if(response.status == 200){
                             this.$swal.fire('Servicio editado correctamente');
@@ -129,10 +137,11 @@
                 this.id = this.$route.params.id;
                 this.modeEdit = true;
 
-                axios.get('/api/services/'+this.id)
+                axios.get('/api/servicios/'+this.id)
                     .then(response => {
                         this.nombre = response.data.name;
                         this.desc = response.data.desc;
+                        this.desc_en = response.data.desc_en;
                         this.icon = response.data.icon;
                     });
             }

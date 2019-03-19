@@ -2,7 +2,7 @@
     <div class="container">
 
         <div style="text-align: right">
-            <router-link class="btn btn-primary" to="/servicios/add"><i class="fa fa-plus"></i> Adicionar</router-link>
+            <router-link class="btn btn-primary" to="/social-network/add"><i class="fa fa-plus"></i> Adicionar</router-link>
         </div>
         <br>
 
@@ -10,23 +10,19 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Nombre</th>
-                <th scope="col" width="30%">Desc.</th>
-                <th scope="col" width="30%">Desc. Ingles</th>
-                <th scope="col" width="20%">Icono</th>
-                <th scope="col" width="25%">Acciones</th>
+                <th scope="col">URL</th>
+                <th scope="col">Tipo</th>
+                <th scope="col" width="20%">Acciones</th>
             </tr>
             </thead>
             <tbody>
-            <tr v-for="(item, index) in listServicios">
+            <tr v-for="(item, index) in listSN">
                 <th scope="row">{{ index+1 }}</th>
-                <td>{{ item.name }}</td>
-                <td>{{ item.desc }}</td>
-                <td>{{ item.desc_en }}</td>
-                <td><img :src="item.icon" width="50px" height="50px"></td>
+                <td>{{ item.url }}</td>
+                <td>{{ item.tipo }}</td>
                 <td>
-                    <router-link class="btn btn-success" :to="{ name: 'servicioAdd', params: { id: item.id }}"><i class="fa fa-edit"></i> Editar</router-link>
-                    <button type="button" class="btn btn-danger" v-on:click.prevent="removeServicio(item.id)"><i class="fa fa-remove"></i> Eliminar</button>
+                    <router-link class="btn btn-success" :to="{ name: 'snAdd', params: { id: item.id }}"><i class="fa fa-edit"></i> Editar</router-link>
+                    <button type="button" class="btn btn-danger" v-on:click.prevent="removeSN(item.id)"><i class="fa fa-remove"></i> Eliminar</button>
                 </td>
             </tr>
 
@@ -39,32 +35,32 @@
 
 <script>
     export default {
-        name: 'servicio-list-component',
+        name: 'sn-list-component',
         data:function(){
             return {
-                listServicios : [],
+                listSN : [],
                 id : ''
             }
         },
         methods:{
-            getServicios: function () {
-                fetch('/api/servicios')
+            getSN: function () {
+                fetch('/sn')
                     .then(response => response.json())
                     .then(res => {
-                        this.listServicios = res;
+                        this.listSN = res;
                     })
             },
-
             setId: function(id){
                 this.id = id;
             },
-
-            removeServicio: function(id){
+            removeSN: function(id){
                 this.id = id;
+                //let route = this.$route.path;
+                //let rt = route.replace('/list','');
 
                 this.$swal.fire({
                     title: 'Está seguro?',
-                    text: "Se eliminará el servicio seleccionado.",
+                    text: "Se eliminará la Red Social seleccionada.",
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -72,10 +68,10 @@
                     confirmButtonText: 'Borrar'
                 }).then((result) => {
                     if (result.value) {
-                        axios.delete('/api/services/'+id)
+                        axios.delete('/sn/'+id)
                             .then(response => {
-                                this.$swal.fire('Servicio eliminado correctamente.');
-                                this.getServicios();
+                                this.$swal.fire('Red Social eliminado correctamente.');
+                                this.getSN();
                             })
                             .catch(error => {
                                 this.$swal.fire({
@@ -89,12 +85,12 @@
 
 
             },
-            editServicio: function(id){
-                this.$router.push({ name: 'servicioAdd', params: { id: id }})
+            editSN: function(id){
+                this.$router.push({ name: 'add', params: { id: id }})
             },
         },
         mounted() {
-            this.getServicios();
+            this.getSN();
         }
     }
 </script>

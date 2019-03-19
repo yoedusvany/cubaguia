@@ -31,6 +31,15 @@
         </div>
 
         <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <label>Descripci&oacute;n: Ingles</label>
+                    <textarea class="form-control" placeholder="Descripcion de la excursion" rows="3" v-model="desc_en"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-sm-6 col-md-6 col-lg-6">
                 <div class="form-group">
                     <label for="exampleFormControlFile1">Subir imagen de portada</label>
@@ -65,7 +74,8 @@
 
         <div class="row">
             <div class="form-group">
-                <button type="button" class="btn btn-primary" @click="uploadImage"><i class="fa fa-plus"></i> Adicionar</button>
+                <button v-if="!modeEdit" type="button" class="btn btn-primary" @click="uploadImage"><i class="fa fa-plus"></i> Adicionar</button>
+                <button v-else type="button" class="btn btn-primary" @click="uploadImage"><i class="fa fa-save"></i> Actualizar</button>
             </div>
         </div>
 
@@ -85,6 +95,7 @@
             nombre: '',
             precio: '',
             desc: '',
+            desc_en: '',
             image:'',
             listLugares:[],
             listLugaresSelected:[],
@@ -129,6 +140,7 @@
                         this.nombre = response.data.nombre;
                         this.precio = response.data.precio;
                         this.desc = response.data.desc;
+                        this.desc_en = response.data.desc_en;
                         this.image = response.data.img;
 
                         response.data.lugares.forEach(function(element){
@@ -157,6 +169,7 @@
                     nombre: this.nombre,
                     precio: this.precio,
                     desc: this.desc,
+                    desc_en: this.desc_en,
                     image: this.image,
                     listaLugares: this.listLugaresSelected
                 }).then(response => {
@@ -181,6 +194,7 @@
                     nombre: this.nombre,
                     precio: this.precio,
                     desc: this.desc,
+                    desc_en: this.desc_en,
                     image: this.image,
                     listaLugares: this.listLugaresSelected
                 }).then(response => {

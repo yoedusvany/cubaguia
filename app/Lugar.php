@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Lugar extends Model
 {
     //
-    protected $fillable = ['nombre','desc'];
+    protected $fillable = ['nombre','desc', 'desc_en'];
     protected $table = 'lugar';
 
     public function imgs()

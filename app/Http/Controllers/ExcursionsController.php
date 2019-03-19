@@ -67,16 +67,6 @@ class ExcursionsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -94,6 +84,7 @@ class ExcursionsController extends Controller
         $excursion->nombre = $request->get('nombre');
         $excursion->precio = $request->get('precio');
         $excursion->desc = $request->get('desc');
+        $excursion->desc_en = $request->get('desc_en');
         $excursion->img = $name;
         $excursion->save();
 
@@ -156,15 +147,15 @@ class ExcursionsController extends Controller
                     ->resize(800, 600)
                     ->save(public_path('images/').$name);
             }else{
-                $path = parse_url("http://cubaguia.develop/images/1551324862.jpeg")["path"];
+                $path = parse_url($image)["path"];
                 $pathFragments = explode('/', $path);
                 $name = end($pathFragments);
             }
 
-            $excursion = Excursions::find($excursionID);
             $excursion->nombre = $request->get('nombre');
             $excursion->precio = $request->get('precio');
             $excursion->desc = $request->get('desc');
+            $excursion->desc_en = $request->get('desc_en');
             $excursion->img = $name;
             $excursion->save();
 

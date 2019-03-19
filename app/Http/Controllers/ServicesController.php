@@ -42,6 +42,7 @@ class ServicesController extends Controller
         $servicio = new Servicios();
         $servicio->name = $request->get('nombre');
         $servicio->desc = $request->get('desc');
+        $servicio->desc_en = $request->get('desc_en');
         $servicio->icon = $name;
         $servicio->save();
     }
@@ -73,6 +74,7 @@ class ServicesController extends Controller
         if($service){
             $service->name = $request->get('nombre');
             $service->desc = $request->get('desc');
+            $service->desc_en = $request->get('desc_en');
 
             if($request->get('image')){
                 $this->deleteImage($service->icon);

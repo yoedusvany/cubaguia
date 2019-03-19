@@ -43,16 +43,6 @@ class LugarController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -65,6 +55,7 @@ class LugarController extends Controller
             $lugar = new Lugar();
             $lugar->nombre = $request->get('nombre');
             $lugar->desc = $request->get('desc');
+            $lugar->desc_en = $request->get('desc_en');
             $lugar->save();
 
             $imagenes = $request->get('image');
@@ -130,8 +121,9 @@ class LugarController extends Controller
     public function update(Request $request, Lugar $lugar)
     {
         $lugar->update([
-            'nombre'=> $request->get("nombre"),
-            'desc'=> $request->get("desc")
+            'nombre' => $request->get("nombre"),
+            'desc' => $request->get("desc"),
+            'desc_en' => $request->get("desc_en")
         ]);
 
         $imagenes = $request->get('image');

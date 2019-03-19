@@ -4,6 +4,11 @@ use App\Contacts;
 use Illuminate\Support\Facades\App;
 
 
+Route::get('/test', function () {
+    echo time();
+});
+
+
 Route::get('/', function () {
     $locale = session('locale');
 
@@ -32,11 +37,15 @@ Auth::routes();
 
 Route::get('/home', 'ContactsController@index')->name('home');
 
-
-
 Route::get('/servicios/{path?}', [
     'uses' => 'ContactsController@index',
     'as' => 'servicios',
+    'where' => ['path' => '.*']
+]);
+
+Route::get('/social-network/{path?}', [
+    'uses' => 'ContactsController@index',
+    'as' => 'social-network',
     'where' => ['path' => '.*']
 ]);
 
@@ -72,4 +81,7 @@ Route::group(['middleware' => 'auth'], function() {
     //lugares
     Route::Resource('lugar','LugarController');
     Route::delete('image-delete/{id}', 'LugarController@deleteImage');
+
+    //Redes Sociales
+    Route::Resource('sn','SocialNetworksController');
 });

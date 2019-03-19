@@ -28,7 +28,10 @@ export const i18n = new VueI8n({
             ErrorMessage : "You must fill in all fields.",
             ErrorMessage1 : "Something is wrong.",
             ErrorProccessContactMessage : "Some error occurred while trying to register your contact information. Try it later",
-            SuccessProccessContactMessage : "Contact registered correctly."
+            SuccessProccessContactMessage : "Contact registered correctly.",
+            ClosePanel : "Close Panel",
+            ViewGallery : "See Gallery",
+            MoreDetails : "More Details",
         },
         es:{
             Inicio: "Home",
@@ -40,7 +43,7 @@ export const i18n = new VueI8n({
             Phone: "Teléfono",
             Email: "Correo",
             Contactos : "Contact",
-            Lugares : "Places",
+            Places : "Lugares",
             Services_Text : "Nos encargaremos de que pases dias para el recuerdo, nuestros servicios complementan la excursi&oacute;n de tu vida.",
             Services_Text1 : "Estos son nuestros servicios.",
             SendMessage : "Su mensaje ha sido enviado. Gracias!",
@@ -51,7 +54,10 @@ export const i18n = new VueI8n({
             ErrorMessage : "Debe rellenar todos los campos.",
             ErrorMessage1 : "Something is wrong.",
             ErrorProccessContactMessage : "Ocurrió algún error al intentar registrar su información de contacto. Intentelo mas tarde.",
-            SuccessProccessContactMessage : "Contacto registrado correctamente."
+            SuccessProccessContactMessage : "Contacto registrado correctamente.",
+            ClosePanel : "Cerrar Panel",
+            ViewGallery : "Ver Galería",
+            MoreDetails : "Mas Detalles",
         }
     }
 });
