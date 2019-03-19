@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use JavaScript;
 
 class HomeController extends Controller
 {
@@ -13,6 +14,9 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        JavaScript::put([
+            'foo' => 'bar'
+        ]);
         $this->middleware('auth');
     }
 

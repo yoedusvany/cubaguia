@@ -30,11 +30,13 @@ Route::get('/locale/{locale?}', function ($locale = 'en') {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'ContactsController@index')->name('home');
 
-Route::get('/contact-details/{path?}', [
+
+
+Route::get('/servicios/{path?}', [
     'uses' => 'ContactsController@index',
-    'as' => 'contact-details',
+    'as' => 'servicios',
     'where' => ['path' => '.*']
 ]);
 
@@ -43,7 +45,11 @@ Route::get('/contact-details/{path?}', [
 Route::get('sendMail/{email}/{subject}/{message}', 'ContactsController@sendMail');
 Route::post('contact','ContactsController@store');
 Route::get('getContactData', 'ContactsController@getContactData');
-
+Route::get('/contact-details/{path?}', [
+    'uses' => 'ContactsController@index',
+    'as' => 'contact-details',
+    'where' => ['path' => '.*']
+]);
 
 //EXCURSIONES
 Route::get('excursion-list', 'ExcursionsController@list');
@@ -54,14 +60,16 @@ Route::get('lugar-list', 'LugarController@list');
 
 
 Route::group(['middleware' => 'auth'], function() {
+    //contacts
     Route::get('contact-list', 'ContactsController@list');
     Route::Resource('contact','ContactsController', ['except' => 'store']);
     Route::put('update-contact-data', 'ContactsController@updateContactData');
-
     Route::get('getContactData1', 'ContactsController@getContactData');
 
+    //excursiones
     Route::Resource('excursion','ExcursionsController');
 
+    //lugares
     Route::Resource('lugar','LugarController');
     Route::delete('image-delete/{id}', 'LugarController@deleteImage');
 });

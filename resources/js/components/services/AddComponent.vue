@@ -1,13 +1,13 @@
 <template>
     <div class="container">
         <div style="text-align: right">
-            <router-link class="btn btn-success" to="/lugar"><i class="fa fa-arrow-left"></i> Regresar</router-link>
+            <router-link class="btn btn-success" to="/servicios"><i class="fa fa-arrow-left"></i> Regresar</router-link>
         </div>
         <br>
 
         <div class="form-group">
             <label>Nombre</label>
-            <input type="text" v-model="nombre" name="nombre" v-validate="'required'" class="form-control" placeholder="Nombre del lugar">
+            <input type="text" v-model="nombre" name="nombre" v-validate="'required'" class="form-control" placeholder="Nombre del servicio">
         </div>
 
         <div class="form-group">
@@ -15,9 +15,16 @@
             <textarea v-model="desc" v-validate="'required'" name="desc" class="form-control" id="descTexArea" rows="3"></textarea>
         </div>
 
-        <div class="form-group">
-            <label for="exampleFormControlFile1">Subir im&aacute;genes</label>
-            <input type="file" v-on:change="onImageChange" class="form-control-file" id="exampleFormControlFile1" multiple>
+
+
+        <div class="row">
+            <div class="col-md-6 col-lg-6 form-group">
+                <label for="exampleFormControlFile1">Icono</label>
+                <input type="file" name="image" v-on:change="onImageChange" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+            <div class="col-md-6 col-lg-6" v-if="icon">
+                <img :src="icon" class="img-responsive" height="100" width="100">
+            </div>
         </div>
 
 
@@ -26,14 +33,14 @@
         </ul>
 
         <div class="form-group">
-            <button type="button" class="btn btn-primary" @click="uploadImage">Adicionar</button>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4 cursor-over" v-if="image" v-for="item in image">
-                <span v-if="modeEdit" class="close" @click="deleteImage(item.id)">X</span>
-                <img :src="item.nombre" class="img-responsive" height="200" width="300">
-            </div>
+            <button type="button" class="btn btn-primary" @click="uploadImage">
+                <span v-if="!modeEdit">
+                    <i class="fa fa-plus"></i> Adicionar
+                </span>
+                <span v-if="modeEdit">
+                    <i class="fa fa-save"></i> Actualizar
+                </span>
+            </button>
         </div>
     </div>
 </template>
@@ -43,7 +50,8 @@
         data(){
             return {
                 id: '',
-                image: [],
+                image: '',
+                icon: '',
                 nombre: '',
                 desc : '',
                 modeEdit: false
@@ -66,42 +74,42 @@
                     let obj = {
                         nombre: e.target.result
                     };
-                    vm.image.push(obj);
+                    vm.image = obj.nombre;
                 };
                 reader.readAsDataURL(file);
             },
             uploadImage(){
                 if(!this.modeEdit && this.errors.any() === false){
-                    axios.post('/lugar',{
+                    axios.post('/api/services',{
                         image: this.image,
                         nombre: this.nombre,
                         desc: this.desc
                     }).then(response => {
                         if(response.status == 200){
-                            this.$swal.fire('Lugar registrado correctamente');
+                            this.$swal.fire('Servicio registrado correctamente');
                             this.$router.push('list');
                         }else{
                             this.$swal.fire({
                                 type: 'error',
                                 title: 'Error',
-                                text: 'No se pudo registrar el lugar.',
+                                text: 'No se pudo registrar el servicio.',
                             });
                         }
                     });
                 }else if(this.modeEdit && this.errors.any() === false){
-                    axios.put('/lugar/'+this.id,{
+                    axios.put('/api/services/'+this.id,{
                         image: this.image,
                         nombre: this.nombre,
                         desc: this.desc
                     }).then(response => {
                         if(response.status == 200){
-                            this.$swal.fire('Lugar editado correctamente');
-                            this.$router.push('/lugar');
+                            this.$swal.fire('Servicio editado correctamente');
+                            this.$router.push('/servicios');
                         }else{
                             this.$swal.fire({
                                 type: 'error',
                                 title: 'Error',
-                                text: 'No se pudo editar el lugar.',
+                                text: 'No se pudo editar el servicio.',
                             });
                         }
                     });
@@ -115,60 +123,17 @@
 
 
             },
-
-            edit(){
-                axios.get('lugar/'+id)
-                    .then(response => {
-                        this.$emit('setLugar',response);
-                    });
-            },
-
-            deleteImage(id){
-                if(this.modeEdit){
-                    this.$swal.fire({
-                        title: 'Está seguro?',
-                        text: "Realmente desea eliminar la imagen",
-                        type: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Borrar'
-                    }).then((result) => {
-                        if (result.value) {
-                            axios.delete('/image-delete/'+id)
-                                .then(response => {
-                                    this.$swal.fire('Imagen eliminada correctamente');
-
-                                    var index = this.image.findIndex(x => x.id === id);
-                                    if (index > -1) {
-                                        this.image.splice(index, 1);
-                                    }
-                                })
-                                .catch(error => {
-                                    this.$swal.fire({
-                                        type: 'error',
-                                        title: 'Error',
-                                        text: 'Ocurrio un error!',
-                                    });
-                                });
-                        }
-                    })
-                }
-            }
         },
         mounted() {
             if(this.$route.params.id !== undefined){
                 this.id = this.$route.params.id;
                 this.modeEdit = true;
 
-                axios.get('/lugar/'+this.id)
+                axios.get('/api/services/'+this.id)
                     .then(response => {
-                        this.nombre = response.data.nombre;
+                        this.nombre = response.data.name;
                         this.desc = response.data.desc;
-
-                        for(let i = 0; i<response.data.images.length; i++){
-                            this.image.push(response.data.images[i]);
-                        }
+                        this.icon = response.data.icon;
                     });
             }
         }

@@ -27,11 +27,7 @@
                     this.email = response.data.email;
                 })
                 .catch(error => {
-                    this.$swal.fire({
-                        type: 'error',
-                        title: 'Error',
-                        text: 'Ocurrio un error!',
-                    });
+                    console.log(e);
                 });
         }
     }

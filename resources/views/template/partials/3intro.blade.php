@@ -31,13 +31,13 @@
                     </div>
                 </div>
 
-                <div class="carousel-item">
+                <!--<div class="carousel-item">
                     <div class="carousel-background"><img src="img/intro-carousel/3.jpg" alt=""></div>
                     <div class="carousel-container">
                         <div class="carousel-content">
                             <h2>Temporibus autem quibusdam</h2>
                             <p>Beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt omnis iste natus error sit voluptatem accusantium.</p>
-                            <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+                            <a href="#featured-services" class="btn-geostst-started scrollto">Get Started</a>
                         </div>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                             <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
                         </div>
                     </div>
-                </div>
+                </div>-->
 
             </div>
 

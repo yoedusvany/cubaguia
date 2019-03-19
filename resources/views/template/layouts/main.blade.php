@@ -26,7 +26,6 @@
 </div>
 
 @include('template.partials.6scripts')
-
 </body>
 
 </html>

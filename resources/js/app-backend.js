@@ -20,6 +20,11 @@ const LugarAdd = Vue.component('lugar-add', require('../js/components/lugar/Luga
 const ExcursionList = Vue.component('excursion-list', require('../js/components/excursiones/backend/ListExcursionsComponent').default);
 const ExcursionAdd = Vue.component('excursion-add', require('../js/components/excursiones/backend/AddExcursionComponent').default);
 
+
+const ServiciosList = Vue.component('servicio-list', require('../js/components/services/ListComponent').default);
+const ServicioAdd = Vue.component('servicio-add', require('../js/components/services/AddComponent').default);
+
+
 const routes = [
     {
         path: '/contact', component: require('./components/contacts/ListContactsComponent').default
@@ -56,6 +61,21 @@ const routes = [
             {
                 path: 'list',
                 component: LugarList
+            }
+        ]
+    },
+    {
+        path: '/servicios', component: require('./components/services/ServicesComponent').default,
+        children: [
+            { path: '', component: ServiciosList },
+            {
+                path: 'add/:id?',
+                name: 'servicioAdd',
+                component: ServicioAdd
+            },
+            {
+                path: 'list',
+                component: ServiciosList
             }
         ]
     }

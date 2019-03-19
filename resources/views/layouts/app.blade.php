@@ -64,7 +64,10 @@
                                 <router-link class="nav-link" to="/lugar">Lugares</router-link>
                             </li>
                             <li class="nav-item">
-                                <!--<a class="nav-link" href="{{ url('/lugar-home') }}">{{ __('Places') }}</a>-->
+                                <router-link class="nav-link" to="/servicios">Servicios</router-link>
+                            </li>
+                            <li class="nav-item">
+                            <!--<a class="nav-link" href="{{ url('/lugar-home') }}">{{ __('Places') }}</a>-->
                                 <router-link class="nav-link" to="/contact-details">Detalles de contacto</router-link>
                             </li>
                             <li class="nav-item dropdown">
