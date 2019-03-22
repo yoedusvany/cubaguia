@@ -19,7 +19,7 @@
         },
 
         mounted() {
-            axios.get('sn')
+            this.$axios.get('/api/sn')
                 .then(response => {
                     this.listSN = response.data;
                 })

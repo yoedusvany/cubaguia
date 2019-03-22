@@ -7,11 +7,14 @@ import VeeValidate from 'vee-validate';
 import VueSweetalert2 from 'vue-sweetalert2';
 import VueSlideoutPanel from 'vue2-slideout-panel';
 import { i18n } from './i18n';
+import axios from 'axios';
 
 Vue.use(VueSlideoutPanel);
 Vue.use(VeeValidate);
 Vue.use(VueSweetalert2);
 
+
+Vue.prototype.$axios = axios;
 
 //COMPONENTS
 Vue.component('contact-component', require('./components/contacts/ContactComponent.vue').default);

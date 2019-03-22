@@ -3,9 +3,9 @@
 use App\Contacts;
 use Illuminate\Support\Facades\App;
 
-
-Route::get('/test', function () {
-    echo time();
+Route::get('test', function()
+{
+    dd(Config::get('mail'));
 });
 
 
@@ -49,6 +49,12 @@ Route::get('/social-network/{path?}', [
     'where' => ['path' => '.*']
 ]);
 
+Route::get('/slider/{path?}', [
+    'uses' => 'ContactsController@index',
+    'as' => 'slider',
+    'where' => ['path' => '.*']
+]);
+
 
 //CONTACTS
 Route::get('sendMail/{email}/{subject}/{message}', 'ContactsController@sendMail');
@@ -84,4 +90,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     //Redes Sociales
     Route::Resource('sn','SocialNetworksController');
+
+    //Sliders
+    Route::Resource('slider-manager','SliderController');
 });

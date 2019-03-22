@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSocialNetworksTable extends Migration
+class CreateSliderTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateSocialNetworksTable extends Migration
      */
     public function up()
     {
-        Schema::create('social_networks', function (Blueprint $table) {
+        Schema::create('slider', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tipo');
-            $table->string('url');
+            $table->string('title');
+            $table->string('title_en');
+            $table->text('desc');
+            $table->text('desc_en');
+            $table->string('image');
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateSocialNetworksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('social_networks');
+        Schema::dropIfExists('slider');
     }
 }

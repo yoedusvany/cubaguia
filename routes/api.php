@@ -18,3 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::Resource('servicios','ServicesController');
+Route::get('sn','SocialNetworksController@index');
+Route::get('slider-manager','SliderController@index');
+

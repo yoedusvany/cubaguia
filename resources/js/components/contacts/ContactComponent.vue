@@ -100,7 +100,7 @@
                             message : this.message
                         };
 
-                        axios.post('/contact',newContact).then((response) => {
+                        this.$axios.post('/contact',newContact).then((response) => {
                             this.name = '';
                             this.email = '';
                             this.subject = '';
@@ -132,7 +132,7 @@
             }
         },
         mounted() {
-            axios.get('getContactData')
+            this.$axios.get('getContactData')
                 .then(response => {
                     this.contactDataAddress = response.data.address;
                     this.contactDataPhone = response.data.phone;

@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h3>Redes Sociales</h3>
+        <h3>Sliders</h3>
         <div>
             <router-view></router-view>
         </div>
@@ -11,6 +11,7 @@
     export default {
 
         mounted() {
+            console.log('Component mounted.')
         }
     }
 </script>

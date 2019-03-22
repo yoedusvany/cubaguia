@@ -44,7 +44,7 @@
         methods: {
             saveData() {
                 if (this.errors.any() === false) {
-                    axios.put('/update-contact-data', {
+                    this.$axios.put('/update-contact-data', {
                         address: this.address,
                         phone: this.phone,
                         email: this.email
@@ -72,7 +72,7 @@
         },
 
         mounted() {
-            axios.get('getContactData')
+            this.$axios.get('getContactData')
                 .then(response => {
                     console.log(response);
                     this.address = response.data.address;

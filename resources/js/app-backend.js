@@ -27,6 +27,9 @@ const ServicioAdd = Vue.component('servicio-add', require('../js/components/serv
 const SNList = Vue.component('sn-list', require('../js/components/social_network/SNListComponent').default);
 const SNAdd = Vue.component('sn-add', require('../js/components/social_network/SNAddComponent').default);
 
+const SliderList = Vue.component('slider-list', require('../js/components/slider/ListComponent').default);
+const SliderAdd = Vue.component('slider-add', require('../js/components/slider/AddComponent').default);
+
 
 const routes = [
     {
@@ -34,6 +37,24 @@ const routes = [
     },
     {
         path: '/contact-details', component: require('./components/contact_data/ContactDataComponent').default
+    },
+    {
+        path: '/slider', component: require('./components/slider/SliderComponent').default,
+        children: [
+            {
+                path: '',
+                component: SliderList
+            },
+            {
+                path: 'add/:id?',
+                name: 'sliderAdd',
+                component: SliderAdd
+            },
+            {
+                path: 'list',
+                component: SliderList
+            }
+        ]
     },
     {
         path: '/social-network', component: require('./components/social_network/SNComponent').default,

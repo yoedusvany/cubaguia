@@ -20,7 +20,7 @@
         },
 
         mounted() {
-            axios.get('getContactData')
+            this.$axios.get('getContactData')
                 .then(response => {
                     this.address = response.data.address;
                     this.phone = response.data.phone;

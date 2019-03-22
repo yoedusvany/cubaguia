@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\ContactData;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -32,9 +33,10 @@ class ContactResponse extends Mailable
      */
     public function build()
     {
-        return $this->view('mail')->with([
-            'subject' => $this->subject,
-            'message' => $this->message,
-        ]);
+        $mail = ContactData::all()->first();
+
+        return $this->from($mail->email)
+            ->subject('Probando')
+            ->view('mail');
     }
 }

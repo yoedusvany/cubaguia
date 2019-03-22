@@ -34,7 +34,7 @@
 
         methods: {
             getExcursiones: function () {
-                axios.get('/excursion-list')
+                this.$axios.get('/excursion-list')
                     .then(resp => {
                         this.excursiones = resp.data;
                     });

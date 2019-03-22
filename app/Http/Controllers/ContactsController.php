@@ -44,10 +44,12 @@ class ContactsController extends Controller
      */
     public function sendMail($email, $subject, $message)
     {
-        Mail::to($email)
-            ->send(new ContactResponse($subject, $message));
-
-        return;
+        try {
+            Mail::to($email)
+                ->send(new ContactResponse($subject, $message));
+        } catch (Exception $e) {
+            return $e;
+        }
     }
 
     /**
